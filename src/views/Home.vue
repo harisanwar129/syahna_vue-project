@@ -2,6 +2,7 @@
   <div class="home">
     <HeaderShayna />
     <HeroShayna />
+    <WomenShayna />
   </div>
 </template>
 
@@ -11,11 +12,13 @@
 // import HeaderShayna from "@/components/HeaderShayna.vue";
 import HeaderShayna from "../components/HeaderShayna.vue";
 import HeroShayna from "../components/HeroShayna.vue";
+import WomenShayna from "../components/WomenShayna.vue";
 export default {
   name: "Home",
   components: {
     HeaderShayna,
     HeroShayna,
+    WomenShayna,
   },
 };
 </script>
