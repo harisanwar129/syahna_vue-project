@@ -8,7 +8,7 @@
           <div class="col-lg-12">
             <div class="breadcrumb-text product-more">
               <router-link to="/"><i class="fa fa-home"></i> Home</router-link>
-              <span>Detail</span>
+              <span>Detail Barang</span>
             </div>
           </div>
         </div>
