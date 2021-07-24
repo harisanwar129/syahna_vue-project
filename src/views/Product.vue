@@ -61,11 +61,21 @@
                     <h4>Rp.{{ productDetails.price }}</h4>
                   </div>
                   <div class="quantity">
-                    <router-link to="/cart"
-                      ><a href="shopping-cart.html" class="primary-btn pd-cart"
+                    <router-link to="/cart">
+                      <a
+                        @click="
+                          saveKeranjang(
+                            productDetails.id,
+                            productDetails.name,
+                            productDetails.price,
+                            productDetails.galleries[0].photo
+                          )
+                        "
+                        href="#"
+                        class="primary-btn pd-cart"
                         >Add To Cart</a
-                      ></router-link
-                    >
+                      >
+                    </router-link>
                   </div>
                 </div>
               </div>
@@ -102,13 +112,8 @@ export default {
   data() {
     return {
       gambar_default: "",
-      thumbs: [
-        "img/mickey1.jpg",
-        "img/mickey2.jpg",
-        "img/mickey3.jpg",
-        "img/mickey4.jpg",
-      ],
       productDetails: [],
+      keranjangUser: [],
     };
   },
 
@@ -120,9 +125,28 @@ export default {
       this.productDetails = data;
       this.gambar_default = data.galleries[0].photo;
     },
+
+    saveKeranjang(idProduct, nameProduct, priceProduct, photoProduct) {
+      var productStore = {
+        id: idProduct,
+        name: nameProduct,
+        price: priceProduct,
+        photo: photoProduct,
+      };
+      this.keranjangUser.push(productStore);
+      const parsed = JSON.stringify(this.keranjangUser);
+      localStorage.setItem("keranjangUser", parsed);
+    },
   },
 
   mounted() {
+    if (localStorage.getItem("keranjangUser")) {
+      try {
+        this.keranjangUser = JSON.parse(localStorage.getItem("keranjangUser"));
+      } catch (e) {
+        localStorage.removeItem("keranjangUser");
+      }
+    }
     axios
       // .get("https://izaldev.my.id/api/products")
       // .then((res) => console.log(res))
